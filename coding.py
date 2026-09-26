@@ -31,5 +31,24 @@ def choose_cuisine ():
     print (f"✓ *{choice}* cuisine selected!")
     print ()
 
+def choose_spiciness ():
+    print ("-" * 60)
+    print ("                  CHOOSE YOUR SPICY LEVEL")
+    print ("-" * 60)
+    print ()
+    print ("    1 → Spicy")
+    print ("    2 → Non-Spicy") 
+    print ()
+    item2 = input("\nSpiciness (Enter number 1/2): ")
+    print ()
+    spiciness = {
+        "1":"spicy",
+        "2":"non-spicy"
+    }
+    spicy_level = spiciness.get(item2)
+    print (f"✓ Your spicy level is *{spicy_level}*")
+    print ()
+
 intro ()
 choose_cuisine ()
+choose_spiciness ()
