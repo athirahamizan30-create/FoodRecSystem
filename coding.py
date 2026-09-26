@@ -49,6 +49,17 @@ def choose_spiciness ():
     print (f"✓ Your spicy level is *{spicy_level}*")
     print ()
 
+def set_budget ():
+    print ("-" * 60)
+    print ("                     SET YOUR BUDGET")
+    print ("-" * 60)
+    print ()
+    budget = input("\nBudget (Enter your budget 5.00 - 40.00): ")
+    print ()
+    print (f"✓ Your budget is *{budget}*.")
+    print ()
+
 intro ()
 choose_cuisine ()
 choose_spiciness ()
+set_budget ()
