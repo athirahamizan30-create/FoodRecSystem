@@ -114,6 +114,7 @@ def choose_cuisine ():
     choice = cuisine.get(item1)
     print (f"✓ *{choice}* cuisine selected!")
     print ()
+    return choice
 
 def choose_spiciness ():
     print ("-" * 60)
@@ -132,18 +133,45 @@ def choose_spiciness ():
     spicy_level = spiciness.get(item2)
     print (f"✓ Your spicy level is *{spicy_level}*")
     print ()
+    return spicy_level
 
 def set_budget ():
     print ("-" * 60)
     print ("                     SET YOUR BUDGET")
     print ("-" * 60)
     print ()
-    budget = input("\nBudget (Enter your budget 5.00 - 40.00): ")
-    print ()
-    print (f"✓ Your budget is *{budget}*.")
-    print ()
+    while True:
+        try:
+            budget = float(input("\nBudget (Enter your budget 5.00 - 40.00): "))
+            print ()
+            print (f"✓ Your budget is *{budget}*.")
+            print ()
+            return budget
+        except ValueError:
+            print("\n*Invalid Input! Please enter a valid number (e.g., 10 or 15.50).*")
+
+def rec_food (cuisine, budget, spicy_level):
+    menu = food_data.get(cuisine, [])
+    
+    recommendations = []
+    for item in menu:
+        if item["spiciness"] == spicy_level and item["price"] <= budget:
+            recommendations.append(item)
+            
+    return recommendations
+
+def show_food(cuisine, budget, spicy_level): 
+    matches = rec_food(cuisine, budget, spicy_level)
+
+    print("Recommended Options:")
+    for dish in matches:
+        print(f"• {dish['food']} - RM {dish['price']:.2f}")
+
+
 
 intro ()
 choose_cuisine ()
 choose_spiciness ()
 set_budget ()
+show_food()
+
