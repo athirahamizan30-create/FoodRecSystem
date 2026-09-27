@@ -164,25 +164,35 @@ def rec_food (cuisine, budget, spicy_level):
             
     return recommendations
 
-def show_food_loop(cuisine, budget, spicy_level): 
+def show_food_loop(user_cuisine, user_budget, user_spicy): 
     matches = rec_food(user_cuisine, user_budget, user_spicy)
     
-    print("Recommended Options:")
-
     if not matches:
         print("*No food matches your criteria. Try increasing your budget or changing preferences!*")
         rerun = input("Would you like to try again? (y/n): ").lower()
 
         if rerun == "no" or rerun =="n":
             print ("Thank you for using our system. Have a great day") 
-            return False
+            return "exit"
 
-        return True
+        return "retry"
 
     else:
         print("Recommended Options:")
-        for dish in matches:
-            print(f"• {dish['food']} - RM {dish['price']:.2f}")
+        for i, dish in enumerate(matches, start = 1):
+            print(f"{i}. {dish['food']} - RM {dish['price']:.2f}")
+    
+def price_loop():
+    cal_price = input("Would you like to know the estimated price? (y/n): ").lower()
+
+    if cal_price == "no" or rerun =="n":
+        print ("Thank you for using our system. Have a great day") 
+        return "exit"
+
+    else:
+        food = input ("Which meal would you like to have? (Enter a number) :")
+        print (food)
+        
 
 
 while True:
@@ -193,7 +203,13 @@ while True:
     user_budget = set_budget()
 
     rerun = show_food_loop(user_cuisine, user_budget, user_spicy)  
-    if not rerun:
-        break   
+    if rerun == "exit":
+        break  
 
+    elif rerun == "retry":
+        continue 
+
+    rerun2 = price_loop()
+    if not rerun2:
+        break
 
