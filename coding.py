@@ -142,13 +142,17 @@ def set_budget ():
     print ()
     while True:
         try:
-            budget = float(input("\nBudget (Enter your budget 5.00 - 40.00): "))
-            print ()
-            print (f"✓ Your budget is *{budget}*.")
-            print ()
-            return budget
+            budget = float(input("\nBudget (Enter your budget 5.00 - 80.00): "))
+
+            if 5.00 <= budget <= 80.00:
+                print ()
+                print (f"✓ Your budget is *{budget}*.")
+                print ()
+                return budget
+            else:
+                print("\n*Out of range! Please enter your budget within the range.*")
         except ValueError:
-            print("\n*Invalid Input! Please enter a valid number (e.g., 10 or 15.50).*")
+            print("\n*Invalid Input! Please enter a valid input.*")
 
 def rec_food (cuisine, budget, spicy_level):
     menu = food_data.get(cuisine, [])
@@ -160,18 +164,36 @@ def rec_food (cuisine, budget, spicy_level):
             
     return recommendations
 
-def show_food(cuisine, budget, spicy_level): 
-    matches = rec_food(cuisine, budget, spicy_level)
-
+def show_food_loop(cuisine, budget, spicy_level): 
+    matches = rec_food(user_cuisine, user_budget, user_spicy)
+    
     print("Recommended Options:")
-    for dish in matches:
-        print(f"• {dish['food']} - RM {dish['price']:.2f}")
+
+    if not matches:
+        print("*No food matches your criteria. Try increasing your budget or changing preferences!*")
+        rerun = input("Would you like to try again? (y/n): ").lower()
+
+        if rerun == "no" or rerun =="n":
+            print ("Thank you for using our system. Have a great day") 
+            return False
+
+        return True
+
+    else:
+        print("Recommended Options:")
+        for dish in matches:
+            print(f"• {dish['food']} - RM {dish['price']:.2f}")
 
 
+while True:
+    intro ()
 
-intro ()
-choose_cuisine ()
-choose_spiciness ()
-set_budget ()
-show_food()
+    user_cuisine = choose_cuisine()
+    user_spicy = choose_spiciness()
+    user_budget = set_budget()
+
+    rerun = show_food_loop(user_cuisine, user_budget, user_spicy)  
+    if not rerun:
+        break   
+
 

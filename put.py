@@ -1,5 +1,3 @@
-import coding
-
 def intro ():
     print ("=" * 60)
     print ("               FOOD RECOMMENDATION SYSTEM ")
@@ -65,5 +63,3 @@ intro()
 choose_cuisine()
 choose_spiciness()
 set_budget()
-
-
