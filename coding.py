@@ -183,30 +183,41 @@ def show_food_loop(user_cuisine, user_budget, user_spicy):
             print(f"{i}. {dish['food']} - RM {dish['price']:.2f}")
 
         return matches
+
+def total_price(price):
+    print ("=" * 60)
+    print ()
     
 def price_loop(recommendations):
-    cal_price = input("Would you like to know the estimated price? (y/n): ").lower()
+    while True:
+        cal_price = input("Would you like to know the estimated price? (y/n): ").lower()
 
-    if cal_price in ["no","n"]:
-        print ("Thank you for using our system. Have a great day") 
-        return "exit"
+        if cal_price in ["no","n"]:
+            print ("Thank you for using our system. Have a great day") 
+            return "exit"
 
-    elif cal_price != 'n' or cal_price !='y':
-        break 
+        elif cal_price in ["yes", "y"]:
+            break
 
-    else: 
+        else: 
+            print ("Invalid input! Please enter 'y' or 'n' to continue")
+
+    while True:
         foodnum = input ("Which meal would you like to have? (Enter a number) :")
+
         if foodnum.isdigit():
             index = int(foodnum) - 1
             if 0 <= index < len(recommendations):
                 choice = recommendations[index]
-                print(f"You selected: {choice['food']} which costs RM {choice['price']:.2f}")
+                print(f"*You selected: {choice['food']} which costs RM {choice['price']:.2f}*")
+                break
+
             else:
                 print("Invalid choice number.")
+
         else:
             print("Please enter a valid number.")
 
-    return True
         
 
 
@@ -217,14 +228,14 @@ while True:
     user_spicy = choose_spiciness()
     user_budget = set_budget()
 
-    rerun = show_food_loop(user_cuisine, user_budget, user_spicy)  
-    if rerun == "exit":
+    matches = show_food_loop(user_cuisine, user_budget, user_spicy)  
+    
+    if matches == "exit":
         break  
-
-    elif rerun == "retry":
+    elif matches == "retry":
         continue 
 
-    rerun2 = price_loop(recommendations=rec_food)
-    if not rerun2:
+    rerun2 = price_loop(recommendations=matches)
+    if rerun2 == "exit":
         break
 
