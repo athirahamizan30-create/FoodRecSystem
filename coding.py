@@ -126,7 +126,7 @@ def choose_cuisine ():  #function to choose cuisine
             else:
                 print ("Invalid input! Please enter the number within the range") #if the input is not within the range of 1-6
         else:
-            print ("Invalid input! Please enter a number.")
+            print ("Invalid input! Please enter a number.") #if the input is not a number
 
 def choose_spiciness ():  #function to choose spiciness level
     print ("-" * 60)
@@ -265,7 +265,7 @@ def price_loop(recommendations):                                #function to cal
 
     while True:
         print()
-        cal_price = input("Would you like to know continue? (y/n): ").lower()
+        cal_price = input("Would you like to continue? (y/n): ").lower()
 
         if cal_price in ["no","n"]:
             print ()
