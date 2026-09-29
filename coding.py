@@ -82,7 +82,7 @@ food_data = {  #list of food based on category, spiciness level and average pric
     ]
 }
 
-def intro ():                                               #introduction to the system function
+def intro (): #introduction to the system function
     print ("=" * 60)
     print ("               FOOD RECOMMENDATION SYSTEM ")
     print ("=" * 60)
@@ -91,7 +91,7 @@ def intro ():                                               #introduction to the
     print ("Let's help you find something delicious.")
     print ()
 
-def choose_cuisine ():                                     #function to choose cuisine
+def choose_cuisine ():  #function to choose cuisine
     print ("Choose your cuisine:")
     print ()
     print ("    1 → Malay")
@@ -116,19 +116,18 @@ def choose_cuisine ():                                     #function to choose c
         if item1.isdigit():
             item1 =int(item1)
 
-            if 1 <= item1 <= len(cuisine):
+            if 1 <= item1 <= len(cuisine):  #only accept input 1-6 for cuisine selection
                 choice = cuisine.get(item1)
                 print()
                 print (f"✓ *{choice}* cuisine selected!")
                 print ()
                 return choice
             else:
-                print ("Invalid input! Please enter the number within the range")
-
+                print ("Invalid input! Please enter the number within the range") #if the input is not within the range of 1-6
         else:
             print ("Invalid input! Please enter a number.")
 
-def choose_spiciness ():                                     #function to choose spiciness level
+def choose_spiciness ():  #function to choose spiciness level
     print ("-" * 60)
     print ("                  CHOOSE YOUR SPICY LEVEL")
     print ("-" * 60)
@@ -148,19 +147,19 @@ def choose_spiciness ():                                     #function to choose
         if item2.isdigit():
             item2 = int(item2)
 
-            if 1 <= item2 <= len(spiciness):
-                spicy_level = spiciness.get(item2)
+            if 1 <= item2 <= len(spiciness):                        #only accept input 1 or 2 for spiciness level
+                spicy_level = spiciness.get(item2)                  #fetching the value of the key from the dictionary "spiciness"
                 print (f"✓ Your spicy level is *{spicy_level}*")
                 print ()
                 return spicy_level
 
             else: 
-                print("Invalid input! Please enter 1 or 2")
+                print("Invalid input! Please enter 1 or 2")         #if the input is not within the range of 1-2
 
         else:
-            print ("Invalid input! Please enter 1 or 2")
+            print ("Invalid input! Please enter 1 or 2")            #if the input is not a number
 
-def set_budget ():                                             #function to set budget based on the price range of the food in the system
+def set_budget ():                                                  #function to set budget based on the price range of the food in the system
     print ("-" * 60)
     print ("                     SET YOUR BUDGET")
     print ("-" * 60)
@@ -171,7 +170,7 @@ def set_budget ():                                             #function to set 
 
             if 5.00 <= budget <= 80.00:
                 print ()
-                print (f"✓ Your budget is *RM{budget}*.")
+                print (f"✓ Your budget is *RM{budget:.2f}*.")
                 print ()
                 return budget
             else:
@@ -189,7 +188,7 @@ def rec_food (cuisine, budget, spicy_level):
             
     return recommendations
 
-def show_food_loop(user_cuisine, user_budget, user_spicy):      #function to show matching available food recommendation based on the user input
+def show_food_loop(user_cuisine, user_budget, user_spicy):          #function to show matching available food recommendation based on the user input
     matches = rec_food(user_cuisine, user_budget, user_spicy)
     
     if not matches:
@@ -288,7 +287,7 @@ while True:
     user_spicy = choose_spiciness()
     user_budget = set_budget()
 
-    matches = show_food_loop(user_cuisine, user_budget, user_spicy)  
+    matches = show_food_loop(user_cuisine, user_budget, user_spicy)
     
     if matches == "exit":
         break  
