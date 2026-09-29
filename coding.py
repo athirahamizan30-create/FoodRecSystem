@@ -214,11 +214,7 @@ def show_food_loop(user_cuisine, user_budget, user_spicy):
             print(f"{i}. {dish['food']} - RM {dish['price']:.2f}")
 
         return matches
-
-def total_price(price):
-    print ("=" * 60)
-    print ()
-    
+ 
 def price_loop(recommendations):
     while True:
         print()
