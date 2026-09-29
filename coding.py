@@ -103,6 +103,7 @@ def choose_cuisine ():  #function to choose cuisine
     print ()
     print ()
     cuisine = {
+        # Maps the user's menu selection number to the corresponding cuisine
         1:"Malay",
         2:"Chinese",
         3:"Indian",
@@ -136,6 +137,7 @@ def choose_spiciness ():  #function to choose spiciness level
     print ("    2 → Non-Spicy") 
     print ()
     spiciness = {
+        # Maps the user's selection to the spiciness value used in food_data
         1:"spicy",
         2:"non-spicy"
     }
@@ -169,6 +171,7 @@ def set_budget ():                                                  #function to
             budget = float(input("\nBudget (Enter your budget 5.00 - 65.00): "))
 
             if 5.00 <= budget <= 80.00:
+                # Accepts only budgets within the price range supported by the system
                 print ()
                 print (f"✓ Your budget is *RM{budget:.2f}*.")
                 print ()
