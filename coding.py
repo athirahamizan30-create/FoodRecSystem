@@ -218,6 +218,24 @@ def price_loop(recommendations):
         else:
             print("Please enter a valid number.")
 
+    while True:
+        print ("=" * 60)
+        print (f"Subtotal : RM {choice['price']:.2f}")
+        print ("Estimated Delivery Fee : RM 3.00")
+        print (f"Total : RM {choice['price']+3:.2f}")
+
+        while True:
+            cal_price = input("Would you like to know continue? (y/n): ").lower()
+
+            if cal_price in ["no","n"]:
+                print ("Thank you for using our system. Have a great day") 
+                return "exit"
+
+            elif cal_price in ["yes", "y"]:
+                continue
+
+            else: 
+                print ("Invalid input! Please enter 'y' or 'n' to continue")
         
 
 
@@ -238,4 +256,9 @@ while True:
     rerun2 = price_loop(recommendations=matches)
     if rerun2 == "exit":
         break
+    elif rerun2 == "retry":
+        continue
+        
+
+
 
