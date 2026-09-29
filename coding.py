@@ -101,7 +101,6 @@ def choose_cuisine ():
     print ("    5 → Korean")
     print ("    6 → Japanese")
     print ()
-    item1 = input("\nCuisine (Enter number 1-6): ")
     print ()
     cuisine = {
         "1":"Malay",
@@ -111,10 +110,15 @@ def choose_cuisine ():
         "5":"Korean",
         "6":"Japanese"
         }
-    choice = cuisine.get(item1)
-    print (f"✓ *{choice}* cuisine selected!")
-    print ()
-    return choice
+    while True:
+        item1 = input("\nCuisine (Enter number 1-6): ")
+        if item1 <= len(cuisine):
+            choice = cuisine.get(item1)
+            print (f"✓ *{choice}* cuisine selected!")
+            print ()
+            return choice
+        else:
+            print ("Invalid input! Please enter the number within the range")
 
 def choose_spiciness ():
     print ("-" * 60)
@@ -218,26 +222,25 @@ def price_loop(recommendations):
         else:
             print("Please enter a valid number.")
 
+
+    print ("=" * 60)
+    print (f"Subtotal : RM {choice['price']:.2f}")
+    print ("Estimated Delivery Fee : RM 3.00")
+    print (f"Total : RM {choice['price']+3:.2f}")
+
     while True:
-        print ("=" * 60)
-        print (f"Subtotal : RM {choice['price']:.2f}")
-        print ("Estimated Delivery Fee : RM 3.00")
-        print (f"Total : RM {choice['price']+3:.2f}")
+        cal_price = input("Would you like to know continue? (y/n): ").lower()
 
-        while True:
-            cal_price = input("Would you like to know continue? (y/n): ").lower()
+        if cal_price in ["no","n"]:
+            print ("Thank you for using our system. Have a great day") 
+            return "exit"
 
-            if cal_price in ["no","n"]:
-                print ("Thank you for using our system. Have a great day") 
-                return "exit"
+        elif cal_price in ["yes", "y"]:
+            return "retry"
 
-            elif cal_price in ["yes", "y"]:
-                continue
-
-            else: 
-                print ("Invalid input! Please enter 'y' or 'n' to continue")
+        else: 
+            print ("Invalid input! Please enter 'y' or 'n' to continue")
         
-
 
 while True:
     intro ()
