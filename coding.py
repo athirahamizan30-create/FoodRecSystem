@@ -103,22 +103,30 @@ def choose_cuisine ():
     print ()
     print ()
     cuisine = {
-        "1":"Malay",
-        "2":"Chinese",
-        "3":"Indian",
-        "4":"Western",
-        "5":"Korean",
-        "6":"Japanese"
+        1:"Malay",
+        2:"Chinese",
+        3:"Indian",
+        4:"Western",
+        5:"Korean",
+        6:"Japanese"
         }
     while True:
         item1 = input("\nCuisine (Enter number 1-6): ")
-        if item1 <= len(cuisine):
-            choice = cuisine.get(item1)
-            print (f"✓ *{choice}* cuisine selected!")
-            print ()
-            return choice
+
+        if item1.isdigit():
+            item1 =int(item1)
+
+            if item1 <= len(cuisine):
+                choice = cuisine.get(item1)
+                print()
+                print (f"✓ *{choice}* cuisine selected!")
+                print ()
+                return choice
+            else:
+                print ("Invalid input! Please enter the number within the range")
+
         else:
-            print ("Invalid input! Please enter the number within the range")
+            print ("Invalid input! Please enter a number.")
 
 def choose_spiciness ():
     print ("-" * 60)
@@ -128,16 +136,29 @@ def choose_spiciness ():
     print ("    1 → Spicy")
     print ("    2 → Non-Spicy") 
     print ()
-    item2 = input("\nSpiciness (Enter number 1/2): ")
-    print ()
     spiciness = {
-        "1":"spicy",
-        "2":"non-spicy"
+        1:"spicy",
+        2:"non-spicy"
     }
-    spicy_level = spiciness.get(item2)
-    print (f"✓ Your spicy level is *{spicy_level}*")
-    print ()
-    return spicy_level
+
+    while True:
+        item2 = input("\nSpiciness (Enter number 1/2): ")
+        print ()
+
+        if item2.isdigit():
+            item2 = int(item2)
+
+            if 1 <= item2 <= len(spiciness):
+                spicy_level = spiciness.get(item2)
+                print (f"✓ Your spicy level is *{spicy_level}*")
+                print ()
+                return spicy_level
+
+            else: 
+                print("Invalid input! Please enter 1 or 2")
+
+        else:
+            print ("Invalid input! Please enter 1 or 2")
 
 def set_budget ():
     print ("-" * 60)
@@ -146,11 +167,11 @@ def set_budget ():
     print ()
     while True:
         try:
-            budget = float(input("\nBudget (Enter your budget 5.00 - 80.00): "))
+            budget = float(input("\nBudget (Enter your budget 5.00 - 65.00): "))
 
             if 5.00 <= budget <= 80.00:
                 print ()
-                print (f"✓ Your budget is *{budget}*.")
+                print (f"✓ Your budget is *RM{budget}*.")
                 print ()
                 return budget
             else:
@@ -173,16 +194,22 @@ def show_food_loop(user_cuisine, user_budget, user_spicy):
     
     if not matches:
         print("*No food matches your criteria. Try increasing your budget or changing preferences!*")
+        print()
         rerun = input("Would you like to try again? (y/n): ").lower()
 
         if rerun == "no" or rerun =="n":
             print ("Thank you for using our system. Have a great day") 
+            print()
+            print ("=" * 60)
+            print("                     THANK YOU")
+            print ("=" * 60) 
             return "exit"
 
         return "retry"
 
     else:
         print("Recommended Options:")
+        print ()
         for i, dish in enumerate(matches, start = 1):
             print(f"{i}. {dish['food']} - RM {dish['price']:.2f}")
 
@@ -194,10 +221,16 @@ def total_price(price):
     
 def price_loop(recommendations):
     while True:
+        print()
         cal_price = input("Would you like to know the estimated price? (y/n): ").lower()
+        print()
 
         if cal_price in ["no","n"]:
             print ("Thank you for using our system. Have a great day") 
+            print()
+            print ("=" * 60)
+            print("                     THANK YOU")
+            print ("=" * 60) 
             return "exit"
 
         elif cal_price in ["yes", "y"]:
@@ -213,7 +246,9 @@ def price_loop(recommendations):
             index = int(foodnum) - 1
             if 0 <= index < len(recommendations):
                 choice = recommendations[index]
+                print()
                 print(f"*You selected: {choice['food']} which costs RM {choice['price']:.2f}*")
+                print()
                 break
 
             else:
@@ -223,16 +258,24 @@ def price_loop(recommendations):
             print("Please enter a valid number.")
 
 
-    print ("=" * 60)
+    print ("-" * 60)
+    print("                 CALCULATING ESTIMATED PRICE")
+    print ("-" * 60)
     print (f"Subtotal : RM {choice['price']:.2f}")
     print ("Estimated Delivery Fee : RM 3.00")
-    print (f"Total : RM {choice['price']+3:.2f}")
+    print (f"Total price : RM {choice['price']+3:.2f}")
 
     while True:
+        print()
         cal_price = input("Would you like to know continue? (y/n): ").lower()
 
         if cal_price in ["no","n"]:
+            print ()
             print ("Thank you for using our system. Have a great day") 
+            print()
+            print ("=" * 60)
+            print("                     THANK YOU")
+            print ("=" * 60)
             return "exit"
 
         elif cal_price in ["yes", "y"]:
