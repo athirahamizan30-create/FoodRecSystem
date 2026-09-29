@@ -1,4 +1,4 @@
-food_data = {
+food_data = {  #list of food based on category, spiciness level and average price in Cyberjaya (survey area)
     "Malay": [
         {"food": "Nasi Lemak Ayam", "spiciness": "spicy",  "price": 10.00},
         {"food": "Mee Goreng Mamak", "spiciness": "spicy",  "price": 9.00},
@@ -82,7 +82,7 @@ food_data = {
     ]
 }
 
-def intro ():
+def intro ():                                               #introduction to the system function
     print ("=" * 60)
     print ("               FOOD RECOMMENDATION SYSTEM ")
     print ("=" * 60)
@@ -91,7 +91,7 @@ def intro ():
     print ("Let's help you find something delicious.")
     print ()
 
-def choose_cuisine ():
+def choose_cuisine ():                                     #function to choose cuisine
     print ("Choose your cuisine:")
     print ()
     print ("    1 → Malay")
@@ -116,7 +116,7 @@ def choose_cuisine ():
         if item1.isdigit():
             item1 =int(item1)
 
-            if item1 <= len(cuisine):
+            if 1 <= item1 <= len(cuisine):
                 choice = cuisine.get(item1)
                 print()
                 print (f"✓ *{choice}* cuisine selected!")
@@ -128,7 +128,7 @@ def choose_cuisine ():
         else:
             print ("Invalid input! Please enter a number.")
 
-def choose_spiciness ():
+def choose_spiciness ():                                     #function to choose spiciness level
     print ("-" * 60)
     print ("                  CHOOSE YOUR SPICY LEVEL")
     print ("-" * 60)
@@ -160,7 +160,7 @@ def choose_spiciness ():
         else:
             print ("Invalid input! Please enter 1 or 2")
 
-def set_budget ():
+def set_budget ():                                             #function to set budget based on the price range of the food in the system
     print ("-" * 60)
     print ("                     SET YOUR BUDGET")
     print ("-" * 60)
@@ -189,7 +189,7 @@ def rec_food (cuisine, budget, spicy_level):
             
     return recommendations
 
-def show_food_loop(user_cuisine, user_budget, user_spicy): 
+def show_food_loop(user_cuisine, user_budget, user_spicy):      #function to show matching available food recommendation based on the user input
     matches = rec_food(user_cuisine, user_budget, user_spicy)
     
     if not matches:
@@ -215,7 +215,7 @@ def show_food_loop(user_cuisine, user_budget, user_spicy):
 
         return matches
  
-def price_loop(recommendations):
+def price_loop(recommendations):                                #function to calculate the estimated price of the selected food recommendation (food price (subtotal), delivery fee, total price)
     while True:
         print()
         cal_price = input("Would you like to know the estimated price? (y/n): ").lower()
