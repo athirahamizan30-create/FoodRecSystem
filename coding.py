@@ -262,7 +262,7 @@ def price_loop(recommendations):                                #function to cal
 
     while True:
         print()
-        cal_price = input("Would you like to know continue? (y/n): ").lower()
+        cal_price = input("Would you like to continue? (y/n): ").lower()
 
         if cal_price in ["no","n"]:
             print ()
